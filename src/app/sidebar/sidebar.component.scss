@@ -1,0 +1,18 @@
+@import "../../assets/custom-bootstrap";
+a {
+  color: $black;
+  &:hover {
+    color: $orange;
+    text-decoration: none;
+    // font-size: 25px;
+  }
+}
+.active {
+  color: $orange;
+  text-decoration: none;
+}
+.my-link {
+  a {
+    font-size: 20px;
+  }
+}
