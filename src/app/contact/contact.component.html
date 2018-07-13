@@ -1,0 +1,144 @@
+<div id="contact" class="row p-2 h-100 justify-content-center align-items-center">
+  <!-- left -->
+  <div class="col-md-5">
+    <div class="row">
+      <!-- contact card -->
+      <div class="col-md-12">
+        <div class="row bg-white m-2 py-4 px-4 border rounded">
+          <div class="col">
+            <h3 class=" my-3">Contact
+              <span class="text-warning">Me</span>
+            </h3>
+            <hr>
+            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. At enim sed aperiam molestias cumque vitae velit, aliquam
+              commodi fuga incidunt,</p>
+            <p> impedit eos blanditiis nemo quos culpa facilis aliquid. Illo, sunt.</p>
+          </div>
+        </div>
+      </div>
+      <!-- contact card -->
+      <div class="col-md-12">
+        <div class="row bg-white m-2 py-4 px-4 border rounded">
+          <div class="col">
+            <h3 class=" my-3">Contact
+              <span class="text-warning">Me</span>
+            </h3>
+            <hr>
+            <div class="row">
+              <div class="col">
+                <i class="fa fa-envelope" aria-hidden="true"></i>
+                <span class="ml-3">rifaldhiaw@gmail.com</span>
+              </div>
+            </div>
+            <hr>
+            <div class="row">
+              <div class="col-12">
+                <i class="fa fa-github" aria-hidden="true"></i>
+                <a class="ml-3" href="http://github.com/rifaldhiaw" target="_blank">
+                  github.com/rifaldhiaw
+                </a>
+              </div>
+              <div class="col-12">
+                <i class="fa fa-instagram" aria-hidden="true"></i>
+                <a class="ml-3" href="http://instagram.com/rifaldhiaw" target="_blank">
+                  instagram.com/rifaldhiaw
+                </a>
+              </div>
+              <div class="col-12">
+                <i class="fa fa-twitter" aria-hidden="true"></i>
+                <a class="ml-3" href="http://twitter.com/rifaldhiaw" target="_blank">
+                  twitter.com/rifaldhiaw
+                </a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!-- right -->
+  <div class="col-md-7 text-center h-100 max-vh-100">
+    <div class="row bg-white m-2 py-4 px-4 border rounded">
+      <div class="col">
+        <!-- header -->
+        <div class="row">
+          <div class="col-9 text-left">
+            <h3 class=" my-2">Chat with
+              <span class="text-warning"> Me</span>
+              <small class="text-muted">/ Publicly</small>
+            </h3>
+            <p class="text-muted">*chat with me is not available yet</p>
+          </div>
+          <div class="col-3">
+            <div *ngIf="auth.user | async">
+              <button class="btn btn-sm btn-danger" (click)="auth.logout()">Logout</button>
+            </div>
+          </div>
+        </div>
+        <hr>
+        <!-- body -->
+        <div class="row chat-body p-2 border rounded">
+          <div class="col float-left text-left">
+
+            <div *ngFor="let message of auth.message$ | async">
+              <div class="row">
+                <div class=" message-wrapper bg-white border rounded px-2 pt-1 float-left">
+                  <div class="user-name">{{message.user}}
+                    <span class="text-dark">| {{message.company}}</span>
+                  </div>
+                  <hr class="m-1">
+                  <p>{{message.message}}</p>
+                </div>
+              </div>
+            </div>
+            
+          </div>
+        </div>
+        <!-- footer -->
+        <div class="row">
+          <div class="col">
+            <div *ngIf="auth.user | async as user; else showLogin">
+              <!-- set company -->
+              <div *ngIf="auth.inputCompany; else showForm">
+                <div class="row mb-2 mt-4">
+                <div class="col-9">
+                    <label for="company" class="sr-only">Your Company: </label>
+                    <input class="form-control" id="company" [(ngModel)]="auth.company" type="text" placeholder="Your Company">
+                </div>
+                <div class="col-3">
+                  <button (click)="auth.UpdateCompany()" class="btn btn-warning ml-2">Set</button>
+                </div>
+              </div>
+              </div>
+              <!-- form send message -->
+              <ng-template #showForm>
+                <div class="mb-2 mt-4">
+                  <div class="row">
+                    <div class="col-9">
+                      <label for="inputMessage" class="sr-only">Message</label>
+                      <input [(ngModel)]="auth.message" type="text" class="form-control" id="inputMessage" placeholder="Your Message Here">
+                    </div>
+                    <div class="col-3">
+                      <button (click)="auth.sendMessage()" class="btn btn-warning ml-2">Send</button>
+                    </div>
+                  </div>
+                </div>
+              </ng-template>
+            </div>
+            <ng-template #showLogin>
+              <div class="mt-3">
+                <p>Please Login, to have a chat</p>
+                <button class="btn btn-warning" (click)="auth.googleLogin()">Login with Google</button>
+              </div>
+            </ng-template>
+          </div>
+        </div>
+        <!-- <div class="col-12 text-center" *ngIf="auth.inputCompany">
+        <label for="company">Your Company: </label>
+        <input id="company" [(ngModel)]="auth.company" type="text">
+        <button (click)="auth.inputDataUser()">Button</button>
+        </div> -->
+      </div>
+    </div>
+  </div>
+</div>

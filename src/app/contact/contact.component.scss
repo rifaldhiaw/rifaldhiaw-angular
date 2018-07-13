@@ -1,0 +1,38 @@
+@import '../../assets/_custom-bootstrap';
+
+#contact {
+  background-color: $gray-lighter;
+}
+.chat-body {
+  background-color: $gray-lightest;
+  font-size: 13px;
+  overflow-y: auto;
+  max-height: 60vh;
+}
+.message-wrapper{
+  max-width: 100%;
+}
+.user-name{
+  font-weight: bold;
+  color: $warning;
+}
+.max-vh-100 {
+  max-height: 100vh;
+}
+
+// scroll custom
+::-webkit-scrollbar {
+  width: 5px;
+::-webkit-scrollbar-track {
+  background: $gray-lightest; 
+  border-radius: 20px;
+}
+}
+::-webkit-scrollbar-thumb {
+  background: $gray-light; 
+  border-radius: 20px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: $orange; 
+  border-radius: 20px;
+}
